@@ -1,10 +1,12 @@
-const Todo = function(title) {
+const Todo = function (title) {
     const getTitle = () => title;
 
     let items = [];
 
+
     return {
-        getTitle
+        getTitle,
+        items
     }
 }
 
