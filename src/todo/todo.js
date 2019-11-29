@@ -1,12 +1,14 @@
-const Todo = function (title) {
+const Todo = function (title, description, dueDate, priority) {
     const getTitle = () => title;
-
-    let items = [];
-
+    const getDescription = () => description;
+    const getDueDate = () => dueDate;
+    const getPriority = () => priority;
 
     return {
         getTitle,
-        items
+        getDescription,
+        getDueDate,
+        getPriority
     }
 }
 

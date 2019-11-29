@@ -3,7 +3,7 @@ const ProjectsTabs = (() => {
   let projectList = [];
 
   const addTab = function (projectItem, index) {
-    document.getElementById('projectcontainer').appendChild(createTabElement(projectItem, index));
+    document.getElementById('project-display').appendChild(createTabElement(projectItem, index));
 
     document.getElementById('project-tab-remove-' + index).addEventListener('click', removeTab);
   };
@@ -15,32 +15,20 @@ const ProjectsTabs = (() => {
 
     projectList.splice(projectToRemove, 1);
 
-    document.getElementById('projectcontainer').innerHTML = '';
+    document.getElementById('project-display').innerHTML = '';
 
     renderProjects(projectList);
 
   };
 
   const renderProjects = function (projects) {
-    const projectContainer = document.getElementById('projectcontainer');
+    const projectDisplay = document.getElementById('project-display');
 
     for (let i = 0; i < projects.length; i++) {
-      projectContainer.appendChild(createTabElement(projects[i], i));
+      projectDisplay.appendChild(createTabElement(projects[i], i));
 
       document.getElementById('project-tab-remove-' + i).addEventListener('click', removeTab);
     }
-
-    // for (i = 0; i < projectList.length; i++) {
-    //     projectList[i].addEventListener("click", function() {
-    //       this.classList.toggle("active");
-    //       var content = this.nextElementSibling;
-    //       if (content.style.maxHeight){
-    //         content.style.maxHeight = null;
-    //       } else {
-    //         content.style.maxHeight = content.scrollHeight + "px";
-    //       } 
-    //     });
-    //   }
   }
 
   const createTabElement = function (projectItem, index) {

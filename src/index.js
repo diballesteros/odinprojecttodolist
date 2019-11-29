@@ -1,25 +1,23 @@
 import { Project } from './project/projects';
 import { ProjectsTabs } from './project/projects.dom';
 import { Todo } from './todo/todo';
-import { TodoItem } from './todo/todo_item/todo_item';
+import { TodoDisplay } from './todo/todo.dom';
 
 const newProject = new Project('Shopping');
 const newProjectTwo = new Project('Bills');
 const newProjectThree = new Project('Chores');
 
+const newTodo = new Todo('Apples', 'to bake', 'test', 'HIGH');
+
+newProject.todoArray.push(newTodo);
+
 ProjectsTabs.projectList.push(newProject);
 ProjectsTabs.projectList.push(newProjectTwo);
 ProjectsTabs.projectList.push(newProjectThree);
 
-const newList = new Todo('Grocery');
-
-newProject.todoArray.push(newList);
-
-const firstItem = new TodoItem('Apples', 'to bake', 'test', 'HIGH');
-
-newList.items.push(firstItem);
-
 ProjectsTabs.renderProjects(ProjectsTabs.projectList);
+
+TodoDisplay.renderTodos(newProject.todoArray)
 
 const init = (() => {
    
@@ -40,3 +38,4 @@ const init = (() => {
 
 
 // http://paletton.com/#uid=13i0u0kllllaFw0g0qFqFg0w0aF
+// https://trello.com/b/KLitacBP/todo-list
