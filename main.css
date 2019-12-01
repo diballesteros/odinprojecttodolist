@@ -67,3 +67,15 @@ body {
     font-size: 24px;
     color: #003333;
 }
+
+.todo-container .todo-item {
+    width: 90%;
+    font-size: 20px;
+    color: #003333;
+    border-bottom: 1px solid black;
+    padding-bottom: 10px;
+    list-style: none;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}

@@ -26,7 +26,7 @@ const TodoDisplay = (() => {
         let newTodoElement = document.createElement('li');
         newTodoElement.className = 'todo-item';
         newTodoElement.id = 'todo-item-' + index;
-        newTodoElement.innerHTML = todoItem.getTitle();
+        newTodoElement.innerHTML = '<input type="checkbox" id="todo-item-checkbox-"' +  index + ' >' + todoItem.getTitle();
         return newTodoElement;
     }
 
