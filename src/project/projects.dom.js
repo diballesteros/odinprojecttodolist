@@ -31,6 +31,14 @@ const ProjectsTabs = (() => {
     }
   }
 
+  const findProject = function (selectedProject) {
+    for (let i = 0; i < projectList.length; i++) {
+        if (projectList[i].getTitle() == selectedProject) {
+            return projectList[i];
+        }
+    }
+ }
+
   const createTabElement = function (projectItem, index) {
     let newProjectElement = document.createElement('div');
     newProjectElement.className = 'project-collapsible';
@@ -42,6 +50,7 @@ const ProjectsTabs = (() => {
   return {
     projectList,
     addTab,
+    findProject,
     renderProjects
   }
 })();

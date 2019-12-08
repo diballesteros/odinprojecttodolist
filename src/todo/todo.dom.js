@@ -8,8 +8,10 @@ const TodoDisplay = (() => {
 
     }
 
-    const addTodo = function () {
+    const addTodo = function (todoItem, index) {
+        document.getElementById('todo-display').appendChild(createTodoElement(todoItem, index));
 
+        //document.getElementById('project-tab-remove-' + index).addEventListener('click', removeTab);
     }
 
     const renderTodos = function (todos) {
@@ -18,7 +20,7 @@ const TodoDisplay = (() => {
         for (let i = 0; i < todos.length; i++) {
           todoDisplay.appendChild(createTodoElement(todos[i], i));
     
-          document.getElementById('todo-item-remove-' + i).addEventListener('click', removeTodo);
+        //   document.getElementById('todo-item-remove-' + i).addEventListener('click', removeTodo);
         }
     }
 
