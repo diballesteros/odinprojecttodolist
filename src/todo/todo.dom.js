@@ -1,17 +1,41 @@
+import { Todo } from './todo';
+
 const TodoDisplay = (() => {
 
     const showTodos = function (todoList) {
-        document.getElementById('todo-display');
+   
     }
 
     const checkTodo = function () {
 
     }
 
-    const addTodo = function (todoItem, index) {
-        document.getElementById('todo-display').appendChild(createTodoElement(todoItem, index));
+    const addTodo = function (project) {
+        const title = document.getElementById('todo-add-title').value;
+
+        const description = document.getElementById('todo-add-desc').value;
+
+        const date = document.getElementById('todo-add-date').value;
+
+        const priority = document.getElementById('todo-add-priority').value;
+
+        const newTodo = new Todo(title, description, date, priority);
+
+        project.todoArray.push(newTodo);
+
+        document.getElementById('todo-display').appendChild(createTodoElement(newTodo, project.todoArray.length - 1));
+        
+        closeAddTodoModal();
 
         //document.getElementById('project-tab-remove-' + index).addEventListener('click', removeTab);
+    }
+
+    const openAddTodoModal = function () {
+        document.getElementById('todo-detail-modal').style.display = "block";
+    }
+
+    const closeAddTodoModal = function () {
+        document.getElementById('todo-detail-modal').style.display = "none";
     }
 
     const renderTodos = function (todos) {
@@ -34,7 +58,9 @@ const TodoDisplay = (() => {
 
     return {
         addTodo,
-        renderTodos
+        renderTodos,
+        openAddTodoModal,
+        closeAddTodoModal
       }
 
 })();

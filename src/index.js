@@ -35,30 +35,18 @@ const init = (() => {
         ProjectsTabs.addTab(ProjectsTabs.projectList[ProjectsTabs.projectList.length - 1], ProjectsTabs.projectList.length - 1);
     }
 
-    const openAddTodoModal = function () {
-        document.getElementById('todo-detail-modal').style.display = "block";
-    }
-
-    const closeAddTodoModal = function () {
-        document.getElementById('todo-detail-modal').style.display = "none";
-    }
-
     const addTodo = function () {
-
-        const otherTodo = new Todo('Honey', 'to spread', 'test', 'LOW');
 
         const project = ProjectsTabs.findProject(selectedProject);
 
-        project.todoArray.push(otherTodo);
-
-        TodoDisplay.addTodo(project.todoArray[project.todoArray.length - 1], project.todoArray.length - 1);
+        TodoDisplay.addTodo(project);
 
     }
 
     document.getElementById('addproject').addEventListener('click', addProject);
-    document.getElementById('add-todo-modal').addEventListener('click', openAddTodoModal);
-    document.getElementById('cancel-todo-modal').addEventListener('click', closeAddTodoModal);
-    document.getElemenyById('addtodo').addEventListener('click', addTodo);
+    document.getElementById('addtodo').addEventListener('click', addTodo);
+    document.getElementById('add-todo-modal').addEventListener('click', TodoDisplay.openAddTodoModal);
+    document.getElementById('cancel-todo-modal').addEventListener('click', TodoDisplay.closeAddTodoModal);
 })();
 
 // http://paletton.com/#uid=13i0u0kllllaFw0g0qFqFg0w0aF
