@@ -1,6 +1,6 @@
-const ProjectsTabs = (() => {
+import { Projects } from './project';
 
-  let projectList = [];
+const ProjectsTabs = (() => {
 
   const addTab = function (projectItem, index) {
     document.getElementById('project-display').appendChild(createTabElement(projectItem, index));
@@ -11,14 +11,11 @@ const ProjectsTabs = (() => {
   const removeTab = function () {
     const id = event.target.id.split("-");
 
-    const projectToRemove = id[id.length - 1];
-
-    projectList.splice(projectToRemove, 1);
+    const projectsToRender = Projects.removeProject(id);
 
     document.getElementById('project-display').innerHTML = '';
 
-    renderProjects(projectList);
-
+    renderProjects(projectsToRender);
   };
 
   const renderProjects = function (projects) {
@@ -31,14 +28,6 @@ const ProjectsTabs = (() => {
     }
   }
 
-  const findProject = function (selectedProject) {
-    for (let i = 0; i < projectList.length; i++) {
-        if (projectList[i].getTitle() == selectedProject) {
-            return projectList[i];
-        }
-    }
- }
-
   const createTabElement = function (projectItem, index) {
     let newProjectElement = document.createElement('div');
     newProjectElement.className = 'project-collapsible';
@@ -48,9 +37,7 @@ const ProjectsTabs = (() => {
   }
 
   return {
-    projectList,
     addTab,
-    findProject,
     renderProjects
   }
 })();

@@ -10,19 +10,7 @@ const TodoDisplay = (() => {
 
     }
 
-    const addTodo = function (project) {
-        const title = document.getElementById('todo-add-title').value;
-
-        const description = document.getElementById('todo-add-desc').value;
-
-        const date = document.getElementById('todo-add-date').value;
-
-        const priority = document.getElementById('todo-add-priority').value;
-
-        const newTodo = new Todo(title, description, date, priority);
-
-        project.todoArray.push(newTodo);
-
+    const addTodoElement = function (newTodo, project) {
         document.getElementById('todo-display').appendChild(createTodoElement(newTodo, project.todoArray.length - 1));
 
         document.getElementById('todo-item-remove-' + (project.todoArray.length - 1)).addEventListener('click', removeTodo);
@@ -30,8 +18,14 @@ const TodoDisplay = (() => {
         closeAddTodoModal();
     }
 
-    const removeTodo = function () {
+    const removeTodo = function (project, index) {
+        const id = event.target.id.split("-");
 
+        const projectsToRender = Projects.removeProject(id);
+    
+        document.getElementById('todo-display').innerHTML = '';
+    
+        renderTodos(project.todoArray);
     }
 
     const openAddTodoModal = function () {
@@ -68,12 +62,13 @@ const TodoDisplay = (() => {
             '</div><span class="removetodo" id="todo-item-remove-' + index + '">X</span>';
         return newTodoElement;
     }
+    
+    document.getElementById('add-todo-modal').addEventListener('click', openAddTodoModal);
+    document.getElementById('cancel-todo-modal').addEventListener('click', closeAddTodoModal);
 
     return {
-        addTodo,
-        renderTodos,
-        openAddTodoModal,
-        closeAddTodoModal
+        addTodoElement,
+        renderTodos
     }
 
 })();
