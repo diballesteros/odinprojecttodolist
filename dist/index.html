@@ -8,7 +8,7 @@
 
 <body>
     <div id="content" class="content">
-        <div class="project-container" >
+        <div class="project-container">
             <div class="project-title">
                 <span></span>
                 <label>Projects</label>
@@ -18,9 +18,9 @@
             </div>
         </div>
         <div class="todo-container">
-            <div id="todo-title" class="todo-title">
+            <div id="todo-title-container" class="todo-title-container">
                 <span></span>
-                <label>Shopping</label>
+                <label id="todo-title"></label>
                 <span id="add-todo-modal" title="Add Todo">+</span>
             </div>
             <ul id="todo-display"></ul>
@@ -29,29 +29,29 @@
 
         </div>
     </div>
-<div id="todo-detail-modal" class="todo-modal">
-    <div class="modal">
-        <label class="modal-title">Add Task</label>
-        <label>Title</label>
-        <input type="text" name="ttitle" id="todo-add-title">
-        <label>Description</label>
-        <input type="text" name="tdescription" id="todo-add-desc">
-        <label>Date</label>
-        <input type="date" name="tdate" id="todo-add-date">
-        <label>Priority</label>
-        <select name="tpriority" id="todo-add-priority">
-            <option value="LOW">LOW</option>
-            <option value="MEDIUM">MEDIUM</option>
-            <option value="HIGH">HIGH</option>
-        </select>
-        <div class="modal-button-group">
-            <span></span>
-            <button id="addtodo">Add</button>
-            <button id="cancel-todo-modal">Cancel</button>
-            <span></span>
+    <div id="todo-detail-modal" class="todo-modal">
+        <div class="modal">
+            <label class="modal-title">Add Task</label>
+            <label>Title</label>
+            <input type="text" name="ttitle" id="todo-add-title">
+            <label>Description</label>
+            <input type="text" name="tdescription" id="todo-add-desc">
+            <label>Date</label>
+            <input type="date" name="tdate" id="todo-add-date">
+            <label>Priority</label>
+            <select name="tpriority" id="todo-add-priority">
+                <option value="LOW">LOW</option>
+                <option value="MEDIUM">MEDIUM</option>
+                <option value="HIGH">HIGH</option>
+            </select>
+            <div class="modal-button-group">
+                <span></span>
+                <button id="addtodo">Add</button>
+                <button id="cancel-todo-modal">Cancel</button>
+                <span></span>
+            </div>
         </div>
     </div>
-</div>
 </body>
 <script src='main.js'></script>
 

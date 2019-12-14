@@ -1,14 +1,17 @@
-import { Projects } from './project';
+import { Projects } from './projects';
+import { TodoDisplay } from '../todo/todo.dom';
 
 const ProjectsTabs = (() => {
 
-  const addTab = function (projectItem, index) {
+  const addProjectElement = function (projectItem, index) {
     document.getElementById('project-display').appendChild(createTabElement(projectItem, index));
 
-    document.getElementById('project-tab-remove-' + index).addEventListener('click', removeTab);
+    document.getElementById('project-tab-' + i).addEventListener('click', switchProject);
+
+    document.getElementById('project-tab-remove-' + index).addEventListener('click', removeProjectElement);
   };
 
-  const removeTab = function () {
+  const removeProjectElement = function () {
     const id = event.target.id.split("-");
 
     const projectsToRender = Projects.removeProject(id);
@@ -18,13 +21,26 @@ const ProjectsTabs = (() => {
     renderProjects(projectsToRender);
   };
 
+  const switchProject = function () {
+    const id = event.target.id.split("-");
+
+    const index = id[id.length - 1];
+
+    const changeTitle = Projects.projectList[index].getTitle();
+
+    TodoDisplay.renderTodos(Projects.projectList[index].todoArray);
+
+    Projects.selectedProject = changeTitle;
+  }
+
   const renderProjects = function (projects) {
     const projectDisplay = document.getElementById('project-display');
 
     for (let i = 0; i < projects.length; i++) {
       projectDisplay.appendChild(createTabElement(projects[i], i));
 
-      document.getElementById('project-tab-remove-' + i).addEventListener('click', removeTab);
+      document.getElementById('project-tab-' + i).addEventListener('click', switchProject);
+      document.getElementById('project-tab-remove-' + i).addEventListener('click', removeProjectElement);
     }
   }
 
@@ -37,7 +53,7 @@ const ProjectsTabs = (() => {
   }
 
   return {
-    addTab,
+    addProjectElement,
     renderProjects
   }
 })();

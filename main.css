@@ -60,7 +60,7 @@ body {
     background-color: #407F7F;
 }
 
-.todo-container .todo-title {
+.todo-container .todo-title-container {
     display: flex;
     justify-content: space-between;
     height: 30px;

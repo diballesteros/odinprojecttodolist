@@ -5,11 +5,15 @@ import { Todo } from './todo/todo';
 import { TodoDisplay } from './todo/todo.dom';
 
 const newProject = new Project('Shopping');
+const newProjectTwo = new Project('Test');
 const newTodo = new Todo('Apples', 'to bake', 'test', 'HIGH');
+const newTodoTwo = new Todo('Honey', 'to bake', 'test', 'HIGH');
 
 newProject.todoArray.push(newTodo);
+newProjectTwo.todoArray.push(newTodoTwo);
 
 Projects.projectList.push(newProject);
+Projects.projectList.push(newProjectTwo);
 
 ProjectsTabs.renderProjects(Projects.projectList);
 

@@ -14,7 +14,7 @@ const Projects = (() => {
 
         ProjectsTabs.projectList.push(newProject);
 
-        ProjectsTabs.addTab(ProjectsTabs.projectList[ProjectsTabs.projectList.length - 1], ProjectsTabs.projectList.length - 1);
+        ProjectsTabs.addProjectElement(ProjectsTabs.projectList[ProjectsTabs.projectList.length - 1], ProjectsTabs.projectList.length - 1);
     }
 
     const removeProject = function (id) {
