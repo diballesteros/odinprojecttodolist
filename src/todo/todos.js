@@ -4,7 +4,7 @@ import { Projects } from '../project/projects';
 
 const Todos = (() => {
 
-    let selectedTodo = '';
+    let selectedTodoIndex = -1;
 
     const addTodo = function () {
         const title = document.getElementById('todo-add-title').value;
@@ -34,6 +34,10 @@ const Todos = (() => {
         return project.todoArray
     }
 
+    const changeSelectedTodoIndex = function (id) {
+        selectedTodoIndex = id;
+    }
+
     const editDetails = function () {
 
     }
@@ -41,7 +45,8 @@ const Todos = (() => {
     document.getElementById('addtodo').addEventListener('click', addTodo);
 
     return {
-        selectedTodo,
+        selectedTodoIndex,
+        changeSelectedTodoIndex,
         removeTodo
     }
 })();

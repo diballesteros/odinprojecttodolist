@@ -21,6 +21,10 @@ const TodoDisplay = (() => {
 
         renderTodos(todostoRender);
 
+        if (Todos.selectedTodoIndex == id[id.length - 1]) {
+            TodoDetailDisplay.hideDetails();
+        }
+
         event.stopPropagation();
     }
 
