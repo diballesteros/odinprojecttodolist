@@ -4,6 +4,8 @@ import { Projects } from '../project/projects';
 
 const Todos = (() => {
 
+    let selectedTodo = '';
+
     const addTodo = function () {
         const title = document.getElementById('todo-add-title').value;
 
@@ -32,9 +34,14 @@ const Todos = (() => {
         return project.todoArray
     }
 
+    const editDetails = function () {
+
+    }
+
     document.getElementById('addtodo').addEventListener('click', addTodo);
 
     return {
+        selectedTodo,
         removeTodo
     }
 })();

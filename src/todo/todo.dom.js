@@ -1,4 +1,5 @@
 import { Todos } from './todos';
+import { TodoDetailDisplay } from './tododetail/todo_detail.dom';
 import { Projects } from '../project/projects';
 
 const TodoDisplay = (() => {
@@ -6,7 +7,9 @@ const TodoDisplay = (() => {
     const addTodoElement = function (newTodo, project) {
         document.getElementById('todo-display').appendChild(createTodoElement(newTodo, project.todoArray.length - 1));
 
+        document.getElementById('todo-item-' + (project.todoArray.length - 1)).addEventListener('click', TodoDetailDisplay.showDetails);
         document.getElementById('todo-item-remove-' + (project.todoArray.length - 1)).addEventListener('click', removeTodoElement);
+        document.getElementById('todo-item-checkbox-' + (project.todoArray.length - 1)).addEventListener('change', removeTodoElement);
 
         closeAddTodoModal();
     }
@@ -17,6 +20,8 @@ const TodoDisplay = (() => {
         const todostoRender = Todos.removeTodo(id);
 
         renderTodos(todostoRender);
+
+        event.stopPropagation();
     }
 
     const openAddTodoModal = function () {
@@ -35,10 +40,6 @@ const TodoDisplay = (() => {
         document.getElementById('todo-detail-modal').style.display = "none";
     }
 
-    const checkTodo = function () {
-
-    }
-
     const renderTodos = function (todos) {
         document.getElementById('todo-display').innerHTML = '';
 
@@ -49,7 +50,9 @@ const TodoDisplay = (() => {
         for (let i = 0; i < todos.length; i++) {
             todoDisplay.appendChild(createTodoElement(todos[i], i));
 
+            document.getElementById('todo-item-' + i).addEventListener('click', TodoDetailDisplay.showDetails);
             document.getElementById('todo-item-remove-' + i).addEventListener('click', removeTodoElement);
+            document.getElementById('todo-item-checkbox-' + i).addEventListener('change', removeTodoElement);
         }
     }
 
@@ -57,7 +60,7 @@ const TodoDisplay = (() => {
         let newTodoElement = document.createElement('li');
         newTodoElement.className = 'todo-item';
         newTodoElement.id = 'todo-item-' + index;
-        newTodoElement.innerHTML = '<div><input type="checkbox" id="todo-item-checkbox-"' + index + ' >' + todoItem.getTitle() +
+        newTodoElement.innerHTML = '<div><input type="checkbox" id="todo-item-checkbox-' + index + '" >' + todoItem.getTitle() +
             '</div><span class="removetodo" id="todo-item-remove-' + index + '">X</span>';
         return newTodoElement;
     }

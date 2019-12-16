@@ -140,3 +140,57 @@ body {
 .modal .modal-button-group button {
     width: 30%;
 }
+
+.detail-container {
+    display: flex;
+    flex-flow: column nowrap;
+    height: 100%;
+    width: 25%;
+    background-color: #266666;
+    border-left: 1px solid black;
+
+}
+
+.detail-container .detail-title {
+    height: 30px;
+    width: 100%;
+    padding: 10px 0px;
+    font-size: 24px;
+    text-align: center;
+    border-bottom: 1px solid black;
+    margin-bottom: 10px;
+}
+
+.detail-container .detail-show-todo {
+    display: none;
+    flex-flow: column nowrap;
+    justify-content: space-between;
+    height: 100%;
+}
+
+.detail-container .detail-container-fields {
+    display: flex;
+    flex-flow: column nowrap;
+    padding: 7px;
+}
+
+.detail-container .detail-container-fields input{
+   margin-bottom: 10px;
+}
+
+.detail-container .detail-show-todo .detail-save {
+    width: 80%;
+    align-self: center;
+    margin: 10px 7px 15px 7px;
+}
+
+.detail-container .detail-no-todo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.detail-container .detail-no-todo label {
+    font-size: 24px;
+}

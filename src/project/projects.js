@@ -33,6 +33,15 @@ const Projects = (() => {
         }
     }
 
+    const findProjectToShow = function () {
+        for (let i = 0; i < projectList.length; i++) {
+            if (projectList[i].defaultStatus === true) {
+                return projectList[i];
+            }
+        }
+        return false;
+    }
+
     document.getElementById('addproject').addEventListener('click', addProject);
 
     return {
@@ -40,7 +49,8 @@ const Projects = (() => {
         selectedProject,
         addProject,
         removeProject,
-        findProject
+        findProject,
+        findProjectToShow
     }
 
 })();

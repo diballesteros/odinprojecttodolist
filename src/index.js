@@ -15,11 +15,27 @@ newProjectTwo.todoArray.push(newTodoTwo);
 Projects.projectList.push(newProject);
 Projects.projectList.push(newProjectTwo);
 
-ProjectsTabs.renderProjects(Projects.projectList);
+Projects.projectList[1].defaultStatus = true;
 
-TodoDisplay.renderTodos(newProject.todoArray);
+(() => {
+    if (typeof Projects.projectList == "undefined" || Projects.projectList.length === 0) {
+        const defaultProject = new Project('Default');
+        defaultProject.show = true;
+        Projects.selectedProject = defaultProject.getTitle();
+        Projects.projectList.push(defaultProject);
+        TodoDisplay.renderTodos(defaultProject.todoArray);
+    }
+    else {
+        const projectToShow = Projects.findProjectToShow();
 
-Projects.selectedProject = newProject.getTitle();
+        Projects.selectedProject = projectToShow.getTitle();
+
+        TodoDisplay.renderTodos(projectToShow.todoArray);
+    }
+
+    ProjectsTabs.renderProjects(Projects.projectList);
+}
+)()
 
 // http://paletton.com/#uid=13i0u0kllllaFw0g0qFqFg0w0aF
 // https://trello.com/b/KLitacBP/todo-list

@@ -25,8 +25,28 @@
             </div>
             <ul id="todo-display"></ul>
         </div>
-        <div id="detail-container">
-
+        <div class="detail-container">
+            <label class="detail-title">Details</label>
+            <div id="detail-show-todo" class="detail-show-todo">
+                <div id="detail-container-fields" class="detail-container-fields">
+                    <label>Title</label>
+                    <input type="text" name="dtitle" id="todo-detail-title">
+                    <label>Description</label>
+                    <input type="text" name="ddescription" id="todo-detail-desc">
+                    <label>Date</label>
+                    <input type="date" name="ddate" id="todo-detail-date">
+                    <label>Priority</label>
+                    <select name="dpriority" id="todo-detail-priority">
+                        <option value="LOW">LOW</option>
+                        <option value="MEDIUM">MEDIUM</option>
+                        <option value="HIGH">HIGH</option>
+                    </select>
+                </div>
+                <button class="detail-save" id="detail-save">Save changes</button>
+            </div>
+            <div id="detail-no-todo" class="detail-no-todo">
+                <label>No Todo Selected</label>
+            </div>
         </div>
     </div>
     <div id="todo-detail-modal" class="todo-modal">

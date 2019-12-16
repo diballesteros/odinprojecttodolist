@@ -1,5 +1,6 @@
 import { Projects } from './projects';
 import { TodoDisplay } from '../todo/todo.dom';
+import { TodoDetailDisplay } from '../todo/tododetail/todo_detail.dom';
 
 const ProjectsTabs = (() => {
 
@@ -19,6 +20,8 @@ const ProjectsTabs = (() => {
     document.getElementById('project-display').innerHTML = '';
 
     renderProjects(projectsToRender);
+
+    event.stopPropagation();
   };
 
   const switchProject = function () {
@@ -26,11 +29,11 @@ const ProjectsTabs = (() => {
 
     const index = id[id.length - 1];
 
-    const changeTitle = Projects.projectList[index].getTitle();
+    Projects.selectedProject  = Projects.projectList[index].getTitle();
 
     TodoDisplay.renderTodos(Projects.projectList[index].todoArray);
 
-    Projects.selectedProject = changeTitle;
+    TodoDetailDisplay.hideDetails();
   }
 
   const renderProjects = function (projects) {
