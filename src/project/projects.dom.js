@@ -1,6 +1,7 @@
 import { Projects } from './projects';
 import { TodoDisplay } from '../todo/todo.dom';
 import { TodoDetailDisplay } from '../todo/tododetail/todo_detail.dom';
+import { Todos } from '../todo/todos';
 
 const ProjectsTabs = (() => {
 
@@ -29,11 +30,25 @@ const ProjectsTabs = (() => {
 
     const index = id[id.length - 1];
 
-    Projects.selectedProject  = Projects.projectList[index].getTitle();
+    removeHighlightProject();
+
+    highlightProject(index);
+
+    Projects.selectedProjectIndex = index;
 
     TodoDisplay.renderTodos(Projects.projectList[index].todoArray);
 
+    Todos.setSelectedTodoIndex(-1);
+
     TodoDetailDisplay.hideDetails();
+  }
+
+  const highlightProject = function (id) {
+    document.getElementById('project-tab-' + id).style.backgroundColor = "silver";
+  }
+
+  const removeHighlightProject = function () {
+    document.getElementById('project-tab-' + Projects.selectedProjectIndex).style.backgroundColor = "";
   }
 
   const renderProjects = function (projects) {
@@ -57,7 +72,8 @@ const ProjectsTabs = (() => {
 
   return {
     addProjectElement,
-    renderProjects
+    renderProjects,
+    highlightProject
   }
 })();
 

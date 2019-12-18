@@ -17,7 +17,7 @@ const Todos = (() => {
 
         const newTodo = new Todo(title, description, date, priority);
 
-        const project = Projects.findProject(Projects.selectedProject);
+        const project = Projects.selectedProjectIndex[Projects.selectedProjectIndex];
 
         project.todoArray.push(newTodo);
 
@@ -27,26 +27,36 @@ const Todos = (() => {
     const removeTodo = function (id) {
         const index = id[id.length - 1];
 
-        const project = Projects.findProject(Projects.selectedProject);
+        const project = Projects.projectList[Projects.selectedProjectIndex];
 
         project.todoArray.splice(index, 1);
 
         return project.todoArray
     }
 
-    const changeSelectedTodoIndex = function (id) {
-        selectedTodoIndex = id;
-    }
+    const getSelectedTodoIndex = () => selectedTodoIndex;
 
-    const editDetails = function () {
+    const setSelectedTodoIndex = (id) => selectedTodoIndex = id;
 
+    const editTodo = function () {
+        const project = Projects.selectedProjectIndex[Projects.selectedProjectIndex];
+
+        project.todoArray[Number(selectedTodoIndex)].setTitle(document.getElementById('todo-detail-title').value);
+
+        project.todoArray[Number(selectedTodoIndex)].setDescription(document.getElementById('todo-detail-desc').value);
+
+        project.todoArray[Number(selectedTodoIndex)].setDueDate(document.getElementById('todo-detail-date').value);
+
+        project.todoArray[Number(selectedTodoIndex)].setPriority(document.getElementById('todo-detail-priority').value);
     }
 
     document.getElementById('addtodo').addEventListener('click', addTodo);
+    document.getElementById('detail-save').addEventListener('click', editTodo);
 
     return {
         selectedTodoIndex,
-        changeSelectedTodoIndex,
+        getSelectedTodoIndex,
+        setSelectedTodoIndex,
         removeTodo
     }
 })();

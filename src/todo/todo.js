@@ -4,10 +4,10 @@ const Todo = function (title, description, dueDate, priority) {
     const getDueDate = () => dueDate;
     const getPriority = () => priority;
 
-    const setTitle = (newTitle) => title = newTitle; 
-    const setDescription = (newDescription) => description = newDescription; 
-    const setDueDate = (newDueDate) => dueDate = newDueDate; 
-    const setPriority = (newPrioirity) => priority = newPrioirity; 
+    const setTitle = (newTitle) => title = newTitle;
+    const setDescription = (newDescription) => description = newDescription;
+    const setDueDate = (newDueDate) => dueDate = newDueDate;
+    const setPriority = (newPrioirity) => priority = newPrioirity;
 
     return {
         getTitle,

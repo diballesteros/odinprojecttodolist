@@ -21,7 +21,7 @@ const TodoDisplay = (() => {
 
         renderTodos(todostoRender);
 
-        if (Todos.selectedTodoIndex == id[id.length - 1]) {
+        if (Todos.getSelectedTodoIndex() == id[id.length - 1]) {
             TodoDetailDisplay.hideDetails();
         }
 
@@ -30,6 +30,8 @@ const TodoDisplay = (() => {
 
     const openAddTodoModal = function () {
         document.getElementById('todo-detail-modal').style.display = "block";
+
+        document.getElementById('todo-add-date').valueAsDate = new Date();
     }
 
     const closeAddTodoModal = function () {
@@ -44,10 +46,18 @@ const TodoDisplay = (() => {
         document.getElementById('todo-detail-modal').style.display = "none";
     }
 
+    const highlightTodoElement = function (id) {
+        document.getElementById('todo-item-' + id).style.backgroundColor = "silver";
+    }
+
+    const removeHighlightTodoElement = function (id) {
+        document.getElementById('todo-item-' + id).style.backgroundColor = "";
+    }
+
     const renderTodos = function (todos) {
         document.getElementById('todo-display').innerHTML = '';
 
-        document.getElementById('todo-title').innerHTML = Projects.selectedProject;
+        document.getElementById('todo-title').innerHTML = Projects.projectList[Projects.selectedProjectIndex].getTitle();
 
         const todoDisplay = document.getElementById('todo-display');
 
@@ -74,6 +84,8 @@ const TodoDisplay = (() => {
 
     return {
         addTodoElement,
+        highlightTodoElement,
+        removeHighlightTodoElement,
         renderTodos
     }
 })();

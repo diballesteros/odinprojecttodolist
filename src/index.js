@@ -6,10 +6,11 @@ import { TodoDisplay } from './todo/todo.dom';
 
 const newProject = new Project('Shopping');
 const newProjectTwo = new Project('Test');
-const newTodo = new Todo('Apples', 'to bake', 'test', 'HIGH');
-const newTodoTwo = new Todo('Honey', 'to bake', 'test', 'HIGH');
+const newTodo = new Todo('Apples', 'to slice', '2019-01-01', 'LOW');
+const newTodoTwo = new Todo('Honey', 'to bake', '2019-02-01', 'HIGH');
 
 newProject.todoArray.push(newTodo);
+newProjectTwo.todoArray.push(newTodo);
 newProjectTwo.todoArray.push(newTodoTwo);
 
 Projects.projectList.push(newProject);
@@ -21,19 +22,21 @@ Projects.projectList[1].defaultStatus = true;
     if (typeof Projects.projectList == "undefined" || Projects.projectList.length === 0) {
         const defaultProject = new Project('Default');
         defaultProject.show = true;
-        Projects.selectedProject = defaultProject.getTitle();
+        Projects.selectedProjectIndex = 0;
         Projects.projectList.push(defaultProject);
         TodoDisplay.renderTodos(defaultProject.todoArray);
     }
     else {
         const projectToShow = Projects.findProjectToShow();
 
-        Projects.selectedProject = projectToShow.getTitle();
+        Projects.selectedProjectIndex = projectToShow;
 
-        TodoDisplay.renderTodos(projectToShow.todoArray);
+        TodoDisplay.renderTodos(Projects.projectList[projectToShow].todoArray);
     }
 
     ProjectsTabs.renderProjects(Projects.projectList);
+
+    ProjectsTabs.highlightProject(Projects.selectedProjectIndex);
 }
 )()
 

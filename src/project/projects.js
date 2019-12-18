@@ -5,7 +5,7 @@ const Projects = (() => {
 
     let projectList = [];
 
-    let selectedProject = "";
+    let selectedProjectIndex = -1;
 
     const addProject = function () {
         const newProjectTitle = window.prompt("Please insert the new Project name");
@@ -25,18 +25,10 @@ const Projects = (() => {
         return projectList;
     }
 
-    const findProject = function (selectedProject) {
-        for (let i = 0; i < projectList.length; i++) {
-            if (projectList[i].getTitle() == selectedProject) {
-                return projectList[i];
-            }
-        }
-    }
-
     const findProjectToShow = function () {
         for (let i = 0; i < projectList.length; i++) {
             if (projectList[i].defaultStatus === true) {
-                return projectList[i];
+                return i;
             }
         }
         return false;
@@ -46,10 +38,9 @@ const Projects = (() => {
 
     return {
         projectList,
-        selectedProject,
+        selectedProjectIndex,
         addProject,
         removeProject,
-        findProject,
         findProjectToShow
     }
 
