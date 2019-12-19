@@ -16,7 +16,7 @@ newProjectTwo.todoArray.push(newTodoTwo);
 Projects.projectList.push(newProject);
 Projects.projectList.push(newProjectTwo);
 
-Projects.projectList[1].defaultStatus = true;
+Projects.selectedProjectIndex = 1;
 
 (() => {
     if (typeof Projects.projectList == "undefined" || Projects.projectList.length === 0) {
@@ -27,11 +27,7 @@ Projects.projectList[1].defaultStatus = true;
         TodoDisplay.renderTodos(defaultProject.todoArray);
     }
     else {
-        const projectToShow = Projects.findProjectToShow();
-
-        Projects.selectedProjectIndex = projectToShow;
-
-        TodoDisplay.renderTodos(Projects.projectList[projectToShow].todoArray);
+        TodoDisplay.renderTodos(Projects.projectList[Projects.selectedProjectIndex].todoArray);
     }
 
     ProjectsTabs.renderProjects(Projects.projectList);

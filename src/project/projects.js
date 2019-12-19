@@ -12,9 +12,11 @@ const Projects = (() => {
 
         const newProject = new Project(newProjectTitle);
 
-        ProjectsTabs.projectList.push(newProject);
+        projectList.push(newProject);
 
-        ProjectsTabs.addProjectElement(ProjectsTabs.projectList[ProjectsTabs.projectList.length - 1], ProjectsTabs.projectList.length - 1);
+        localStorage.setItem('projectlist', JSON.stringify(projectList));
+
+        ProjectsTabs.addProjectElement(projectList[projectList.length - 1], projectList.length - 1);
     }
 
     const removeProject = function (id) {
@@ -25,23 +27,13 @@ const Projects = (() => {
         return projectList;
     }
 
-    const findProjectToShow = function () {
-        for (let i = 0; i < projectList.length; i++) {
-            if (projectList[i].defaultStatus === true) {
-                return i;
-            }
-        }
-        return false;
-    }
-
     document.getElementById('addproject').addEventListener('click', addProject);
 
     return {
         projectList,
         selectedProjectIndex,
         addProject,
-        removeProject,
-        findProjectToShow
+        removeProject
     }
 
 })();

@@ -8,7 +8,7 @@ const ProjectsTabs = (() => {
   const addProjectElement = function (projectItem, index) {
     document.getElementById('project-display').appendChild(createTabElement(projectItem, index));
 
-    document.getElementById('project-tab-' + i).addEventListener('click', switchProject);
+    document.getElementById('project-tab-' + index).addEventListener('click', switchProject);
 
     document.getElementById('project-tab-remove-' + index).addEventListener('click', removeProjectElement);
   };
