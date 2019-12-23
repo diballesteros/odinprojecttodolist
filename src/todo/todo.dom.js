@@ -74,8 +74,8 @@ const TodoDisplay = (() => {
         let newTodoElement = document.createElement('li');
         newTodoElement.className = 'todo-item';
         newTodoElement.id = 'todo-item-' + index;
-        newTodoElement.innerHTML = '<div><input type="checkbox" id="todo-item-checkbox-' + index + '" >' + todoItem.getTitle() +
-            '</div><span class="removetodo" id="todo-item-remove-' + index + '">X</span>';
+        newTodoElement.innerHTML = '<div class="todo-controls"><input type="checkbox" id="todo-item-checkbox-' + index + '" ><label class="todo-item-title">' + todoItem.getTitle() +
+            '</label></div><span class="removetodo" id="todo-item-remove-' + index + '">X</span>';
         return newTodoElement;
     }
 

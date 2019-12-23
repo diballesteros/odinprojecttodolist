@@ -50,6 +50,14 @@ body {
     border-bottom: 1px solid black;
 }
 
+.project-collapsible-title {
+    width: 90%;
+    max-width: 90%;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
 .project-collapsible .removeproject {
     font-size: 16px;
 }
@@ -70,6 +78,12 @@ body {
     color: #003333;
 }
 
+.todo-container .todo-title-container #todo-title {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 .todo-container span {
     padding-right: 10px;
     font-weight: bold;
@@ -85,10 +99,26 @@ body {
     color: #003333;
     border-bottom: 1px solid black;
     padding-bottom: 10px;
+    padding-top: 10px;
     list-style: none;
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
+}
+
+.todo-container .todo-item .todo-controls {
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+    width: 95%;
+}
+
+.todo-container .todo-item .todo-item-title {
+    width: 90%;
+    max-width: 90%;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
 }
 
 .todo-container .todo-item .removetodo {

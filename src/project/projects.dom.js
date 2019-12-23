@@ -26,7 +26,7 @@ const ProjectsTabs = (() => {
   };
 
   const switchProject = function () {
-    const id = event.target.id.split("-");
+    const id = event.target.parentElement.id.split("-");
 
     const index = id[id.length - 1];
 
@@ -66,7 +66,7 @@ const ProjectsTabs = (() => {
     let newProjectElement = document.createElement('div');
     newProjectElement.className = 'project-collapsible';
     newProjectElement.id = 'project-tab-' + index;
-    newProjectElement.innerHTML = '<span>' + projectItem.getTitle() + '</span><span class="removeproject" id="project-tab-remove-' + index + '">X</span>';
+    newProjectElement.innerHTML = '<span class="project-collapsible-title">' + projectItem.getTitle() + '</span><span class="removeproject" id="project-tab-remove-' + index + '">X</span>';
     return newProjectElement;
   }
 

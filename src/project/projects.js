@@ -10,21 +10,49 @@ const Projects = (() => {
     const addProject = function () {
         const newProjectTitle = window.prompt("Please insert the new Project name");
 
+        if (newProjectTitle === null) {
+            return false;
+        }
+
         const newProject = new Project(newProjectTitle);
 
         projectList.push(newProject);
 
-        localStorage.setItem('projectlist', JSON.stringify(projectList));
+        saveProjects();
 
         ProjectsTabs.addProjectElement(projectList[projectList.length - 1], projectList.length - 1);
     }
 
     const removeProject = function (id) {
-        const projectToRemove = projectList[id.length - 1];
+        const projectIdToRemove = id[id.length - 1];
 
-        projectList.splice(projectToRemove, 1);
+        projectList.splice(projectIdToRemove, 1);
+
+        saveProjects();
 
         return projectList;
+    }
+
+    const saveProjects = function () {
+        let projectarray = [];
+
+        for (let i = 0; i < projectList.length; i++) {
+            projectarray.push(projectList[i].getTitle());
+        }
+
+        localStorage.setItem('projectlist', JSON.stringify(projectarray));
+    }
+
+    const loadProjects = function () {
+        if (localStorage.getItem('projectlist') !== null) {
+            let storageProjects = JSON.parse(localStorage.getItem('projectlist'));
+
+            for (let i = 0; i < storageProjects.length; i++) {
+                const cacheProject = new Project(storageProjects[i]);
+
+                projectList.push(cacheProject);
+            }
+        }
     }
 
     document.getElementById('addproject').addEventListener('click', addProject);
@@ -33,7 +61,8 @@ const Projects = (() => {
         projectList,
         selectedProjectIndex,
         addProject,
-        removeProject
+        removeProject,
+        loadProjects
     }
 
 })();

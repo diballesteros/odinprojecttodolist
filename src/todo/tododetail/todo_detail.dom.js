@@ -5,7 +5,7 @@ import { TodoDisplay } from '../todo.dom';
 const TodoDetailDisplay = (() => {
 
     const showDetails = function () {
-        const todoIndex = event.target.id.split("-");
+        const todoIndex = event.target.parentElement.parentElement.id.split("-");
 
         const project = Projects.projectList[Projects.selectedProjectIndex];
 

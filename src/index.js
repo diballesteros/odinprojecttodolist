@@ -1,24 +1,15 @@
 import { Project } from './project/project';
 import { Projects } from './project/projects';
 import { ProjectsTabs } from './project/projects.dom';
-import { Todo } from './todo/todo';
+import { Todos } from './todo/todos';
 import { TodoDisplay } from './todo/todo.dom';
 
-const newProject = new Project('Shopping');
-const newProjectTwo = new Project('Test');
-const newTodo = new Todo('Apples', 'to slice', '2019-01-01', 'LOW');
-const newTodoTwo = new Todo('Honey', 'to bake', '2019-02-01', 'HIGH');
-
-newProject.todoArray.push(newTodo);
-newProjectTwo.todoArray.push(newTodo);
-newProjectTwo.todoArray.push(newTodoTwo);
-
-Projects.projectList.push(newProject);
-Projects.projectList.push(newProjectTwo);
-
-Projects.selectedProjectIndex = 1;
-
 (() => {
+    Projects.loadProjects();
+    Todos.loadTodos();
+
+    Projects.selectedProjectIndex = 1;
+
     if (typeof Projects.projectList == "undefined" || Projects.projectList.length === 0) {
         const defaultProject = new Project('Default');
         defaultProject.show = true;
