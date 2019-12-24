@@ -7,8 +7,6 @@ import { TodoDisplay } from './todo/todo.dom';
     Projects.loadProjects();
     Todos.loadTodos();
 
-    Projects.selectedProjectIndex = 0;
-
     if (typeof Projects.projectList == "undefined" || Projects.projectList.length === 0) {
         Projects.createDefaultProject();
     }
@@ -21,5 +19,4 @@ import { TodoDisplay } from './todo/todo.dom';
 }
 )()
 
-// http://paletton.com/#uid=13i0u0kllllaFw0g0qFqFg0w0aF
-// https://trello.com/b/KLitacBP/todo-list
+// http://paletton.com/#uid=13i0u0kllllaFw0g0qFqFg0w0aF 

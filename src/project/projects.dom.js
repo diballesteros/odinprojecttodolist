@@ -26,9 +26,19 @@ const ProjectsTabs = (() => {
   };
 
   const switchProject = function () {
-    const id = event.target.parentElement.id.split("-");
+    let indexArray = '';
 
-    const index = id[id.length - 1];
+    if (event.target.id.includes('project-tab-')) {
+      indexArray = event.target.id.split("-");
+    } else {
+      indexArray = event.target.parentElement.id.split("-");
+    }
+
+    const index = indexArray[indexArray.length - 1];
+
+    if (Projects.selectedProjectIndex == index) {
+      return false;
+    }
 
     removeHighlightProject();
 

@@ -11,13 +11,13 @@ const TodoDetailDisplay = (() => {
         if (event.target.id.includes('todo-item-')) {
             todoIndex = event.target.id.split("-");
         } else {
-            event.target.parentElement.parentElement.id.split("-");
+            todoIndex = event.target.parentElement.parentElement.id.split("-");
         }
 
         if (Todos.getSelectedTodoIndex() == todoIndex[todoIndex.length - 1]) {
             return false;
         }
-        
+
         const project = Projects.projectList[Projects.selectedProjectIndex];
 
         if (Todos.getSelectedTodoIndex() !== -1) {

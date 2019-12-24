@@ -5,7 +5,7 @@ const Projects = (() => {
 
     let projectList = [];
 
-    let selectedProjectIndex = -1;
+    let selectedProjectIndex = 0;
 
     const addProject = function () {
         const newProjectTitle = window.prompt("Please insert the new Project name");
@@ -57,7 +57,6 @@ const Projects = (() => {
 
     const createDefaultProject = function () {
         const defaultProject = new Project('Default');
-        selectedProjectIndex = 0;
         projectList.push(defaultProject);
         saveProjects();
     }
