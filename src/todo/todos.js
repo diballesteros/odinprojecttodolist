@@ -17,7 +17,7 @@ const Todos = (() => {
 
         const newTodo = new Todo(title, description, date, priority);
 
-        const project = Projects.selectedProjectIndex[Projects.selectedProjectIndex];
+        const project = Projects.projectList[Projects.selectedProjectIndex];
 
         project.todoArray.push(newTodo);
 

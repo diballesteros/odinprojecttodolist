@@ -1,4 +1,3 @@
-import { Project } from './project/project';
 import { Projects } from './project/projects';
 import { ProjectsTabs } from './project/projects.dom';
 import { Todos } from './todo/todos';
@@ -8,18 +7,13 @@ import { TodoDisplay } from './todo/todo.dom';
     Projects.loadProjects();
     Todos.loadTodos();
 
-    Projects.selectedProjectIndex = 1;
+    Projects.selectedProjectIndex = 0;
 
     if (typeof Projects.projectList == "undefined" || Projects.projectList.length === 0) {
-        const defaultProject = new Project('Default');
-        defaultProject.show = true;
-        Projects.selectedProjectIndex = 0;
-        Projects.projectList.push(defaultProject);
-        TodoDisplay.renderTodos(defaultProject.todoArray);
+        Projects.createDefaultProject();
     }
-    else {
-        TodoDisplay.renderTodos(Projects.projectList[Projects.selectedProjectIndex].todoArray);
-    }
+
+    TodoDisplay.renderTodos(Projects.projectList[Projects.selectedProjectIndex].todoArray);
 
     ProjectsTabs.renderProjects(Projects.projectList);
 

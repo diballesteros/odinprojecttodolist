@@ -55,6 +55,13 @@ const Projects = (() => {
         }
     }
 
+    const createDefaultProject = function () {
+        const defaultProject = new Project('Default');
+        selectedProjectIndex = 0;
+        projectList.push(defaultProject);
+        saveProjects();
+    }
+
     document.getElementById('addproject').addEventListener('click', addProject);
 
     return {
@@ -62,7 +69,8 @@ const Projects = (() => {
         selectedProjectIndex,
         addProject,
         removeProject,
-        loadProjects
+        loadProjects,
+        createDefaultProject
     }
 
 })();
