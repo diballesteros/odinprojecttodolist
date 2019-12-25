@@ -1,20 +1,38 @@
-import { Projects } from './projects';
-import { TodoDisplay } from '../todo/todo.dom';
-import { TodoDetailDisplay } from '../todo/tododetail/todo_detail.dom';
-import { Todos } from '../todo/todos';
+import Projects from './projects';
+import TodoDisplay from '../todo/todo.dom';
+import TodoDetailDisplay from '../todo/tododetail/todo_detail.dom';
+import Todos from '../todo/todos';
 
 const ProjectsTabs = (() => {
-
-  const addProjectElement = function (projectItem, index) {
-    document.getElementById('project-display').appendChild(createTabElement(projectItem, index));
-
-    document.getElementById('project-tab-' + index).addEventListener('click', switchProject);
-
-    document.getElementById('project-tab-remove-' + index).addEventListener('click', removeProjectElement);
+  const createTabElement = function createTabElement(projectItem, index) {
+    const newProjectElement = document.createElement('div');
+    newProjectElement.className = 'project-collapsible';
+    newProjectElement.id = `project-tab-${index}`;
+    newProjectElement.innerHTML = `<span class="project-collapsible-title">${projectItem.getTitle()}</span><span class="removeproject" id="project-tab-remove-${index}">X</span>`;
+    return newProjectElement;
   };
 
-  const removeProjectElement = function () {
-    const id = event.target.id.split("-");
+  const renderProjects = function renderProjects(projects) {
+    const projectDisplay = document.getElementById('project-display');
+
+    for (let i = 0; i < projects.length; i++) {
+      projectDisplay.appendChild(createTabElement(projects[i], i));
+
+      document.getElementById(`project-tab-${i}`).addEventListener('click', switchProject);
+      document.getElementById(`project-tab-remove-${i}`).addEventListener('click', removeProjectElement);
+    }
+  };
+
+  const addProjectElement = function addProjectElement(projectItem, index) {
+    document.getElementById('project-display').appendChild(createTabElement(projectItem, index));
+
+    document.getElementById(`project-tab-${index}`).addEventListener('click', switchProject);
+
+    document.getElementById(`project-tab-remove-${index}`).addEventListener('click', removeProjectElement);
+  };
+
+  const removeProjectElement = function removeProjectElement() {
+    const id = event.target.id.split('-');
 
     const projectsToRender = Projects.removeProject(id);
 
@@ -25,18 +43,18 @@ const ProjectsTabs = (() => {
     event.stopPropagation();
   };
 
-  const switchProject = function () {
+  const switchProject = function switchProject() {
     let indexArray = '';
 
     if (event.target.id.includes('project-tab-')) {
-      indexArray = event.target.id.split("-");
+      indexArray = event.target.id.split('-');
     } else {
-      indexArray = event.target.parentElement.id.split("-");
+      indexArray = event.target.parentElement.id.split('-');
     }
 
     const index = indexArray[indexArray.length - 1];
 
-    if (Projects.selectedProjectIndex == index) {
+    if (Projects.selectedProjectIndex === Number(index)) {
       return false;
     }
 
@@ -51,40 +69,23 @@ const ProjectsTabs = (() => {
     Todos.setSelectedTodoIndex(-1);
 
     TodoDetailDisplay.hideDetails();
-  }
 
-  const highlightProject = function (id) {
-    document.getElementById('project-tab-' + id).style.backgroundColor = "silver";
-  }
+    return true;
+  };
 
-  const removeHighlightProject = function () {
-    document.getElementById('project-tab-' + Projects.selectedProjectIndex).style.backgroundColor = "";
-  }
+  const highlightProject = function highlightProject(id) {
+    document.getElementById(`project-tab-${id}`).style.backgroundColor = 'silver';
+  };
 
-  const renderProjects = function (projects) {
-    const projectDisplay = document.getElementById('project-display');
-
-    for (let i = 0; i < projects.length; i++) {
-      projectDisplay.appendChild(createTabElement(projects[i], i));
-
-      document.getElementById('project-tab-' + i).addEventListener('click', switchProject);
-      document.getElementById('project-tab-remove-' + i).addEventListener('click', removeProjectElement);
-    }
-  }
-
-  const createTabElement = function (projectItem, index) {
-    let newProjectElement = document.createElement('div');
-    newProjectElement.className = 'project-collapsible';
-    newProjectElement.id = 'project-tab-' + index;
-    newProjectElement.innerHTML = '<span class="project-collapsible-title">' + projectItem.getTitle() + '</span><span class="removeproject" id="project-tab-remove-' + index + '">X</span>';
-    return newProjectElement;
-  }
+  const removeHighlightProject = function removeHighlightProject() {
+    document.getElementById(`project-tab-${Projects.selectedProjectIndex}`).style.backgroundColor = '';
+  };
 
   return {
     addProjectElement,
     renderProjects,
-    highlightProject
-  }
+    highlightProject,
+  };
 })();
 
-export { ProjectsTabs };
+export { ProjectsTabs as default };

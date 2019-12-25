@@ -1,12 +1,11 @@
-import { Todo } from './todo';
-import { TodoDisplay } from './todo.dom';
-import { Projects } from '../project/projects';
+import Todo from './todo';
+import TodoDisplay from './todo.dom';
+import Projects from '../project/projects';
 
 const Todos = (() => {
-
     let selectedTodoIndex = -1;
 
-    const addTodo = function () {
+    const addTodo = function addTodo() {
         const title = document.getElementById('todo-add-title').value;
 
         const description = document.getElementById('todo-add-desc').value;
@@ -24,9 +23,9 @@ const Todos = (() => {
         saveTodos();
 
         TodoDisplay.addTodoElement(newTodo, project);
-    }
+    };
 
-    const removeTodo = function (id) {
+    const removeTodo = function removeTodo(id) {
         const index = id[id.length - 1];
 
         const project = Projects.projectList[Projects.selectedProjectIndex];
@@ -35,14 +34,16 @@ const Todos = (() => {
 
         saveTodos();
 
-        return project.todoArray
-    }
+        return project.todoArray;
+    };
 
     const getSelectedTodoIndex = () => selectedTodoIndex;
 
-    const setSelectedTodoIndex = (id) => selectedTodoIndex = id;
+    const setSelectedTodoIndex = (id) => {
+        selectedTodoIndex = id;
+    };
 
-    const editTodo = function () {
+    const editTodo = function editTodo() {
         const project = Projects.projectList[Projects.selectedProjectIndex];
 
         project.todoArray[Number(selectedTodoIndex)].setTitle(document.getElementById('todo-detail-title').value);
@@ -54,10 +55,10 @@ const Todos = (() => {
         project.todoArray[Number(selectedTodoIndex)].setPriority(document.getElementById('todo-detail-priority').value);
 
         saveTodos();
-    }
+    };
 
-    const saveTodos = function () {
-        let todoslistarray = [];
+    const saveTodos = function saveTodos() {
+        const todoslistarray = [];
 
         for (let i = 0; i < Projects.projectList.length; i++) {
             todoslistarray.push([]);
@@ -71,11 +72,11 @@ const Todos = (() => {
         }
 
         localStorage.setItem('todolists', JSON.stringify(todoslistarray));
-    }
+    };
 
-    const loadTodos = function () {
+    const loadTodos = function loadTodos() {
         if (localStorage.getItem('todolists') !== null) {
-            let storageTodos = JSON.parse(localStorage.getItem('todolists'));
+            const storageTodos = JSON.parse(localStorage.getItem('todolists'));
 
             for (let i = 0; i < storageTodos.length; i++) {
                 for (let j = 0; j < storageTodos[i].length; j++) {
@@ -88,7 +89,7 @@ const Todos = (() => {
                 }
             }
         }
-    }
+    };
 
     document.getElementById('addtodo').addEventListener('click', addTodo);
     document.getElementById('detail-save').addEventListener('click', editTodo);
@@ -98,8 +99,8 @@ const Todos = (() => {
         getSelectedTodoIndex,
         setSelectedTodoIndex,
         removeTodo,
-        loadTodos
-    }
+        loadTodos,
+    };
 })();
 
-export { Todos }
+export { Todos as default };

@@ -1,20 +1,18 @@
-import { Projects } from '../../project/projects';
-import { Todos } from '../todos';
-import { TodoDisplay } from '../todo.dom';
+import Projects from '../../project/projects';
+import Todos from '../todos';
+import TodoDisplay from '../todo.dom';
 
 const TodoDetailDisplay = (() => {
-
-    const showDetails = function () {
-
+    const showDetails = function showDetails() {
         let todoIndex = '';
 
         if (event.target.id.includes('todo-item-')) {
-            todoIndex = event.target.id.split("-");
+            todoIndex = event.target.id.split('-');
         } else {
-            todoIndex = event.target.parentElement.parentElement.id.split("-");
+            todoIndex = event.target.parentElement.parentElement.id.split('-');
         }
 
-        if (Todos.getSelectedTodoIndex() == todoIndex[todoIndex.length - 1]) {
+        if (Todos.getSelectedTodoIndex() === Number(todoIndex[todoIndex.length - 1])) {
             return false;
         }
 
@@ -28,9 +26,9 @@ const TodoDetailDisplay = (() => {
 
         Todos.setSelectedTodoIndex(todoIndex[todoIndex.length - 1]);
 
-        document.getElementById('detail-no-todo').style.display = "none";
+        document.getElementById('detail-no-todo').style.display = 'none';
 
-        document.getElementById('detail-show-todo').style.display = "flex";
+        document.getElementById('detail-show-todo').style.display = 'flex';
 
         document.getElementById('todo-detail-title').value = project.todoArray[todoIndex[todoIndex.length - 1]].getTitle();
 
@@ -39,19 +37,20 @@ const TodoDetailDisplay = (() => {
         document.getElementById('todo-detail-date').value = project.todoArray[todoIndex[todoIndex.length - 1]].getDueDate();
 
         document.getElementById('todo-detail-priority').value = project.todoArray[todoIndex[todoIndex.length - 1]].getPriority();
-    }
 
-    const hideDetails = function () {
-        document.getElementById('detail-no-todo').style.display = "flex";
+        return true;
+    };
 
-        document.getElementById('detail-show-todo').style.display = "none";
-    }
+    const hideDetails = function hideDetails() {
+        document.getElementById('detail-no-todo').style.display = 'flex';
+
+        document.getElementById('detail-show-todo').style.display = 'none';
+    };
 
     return {
         showDetails,
-        hideDetails
-    }
-
+        hideDetails,
+    };
 })();
 
-export { TodoDetailDisplay }
+export { TodoDetailDisplay as default };

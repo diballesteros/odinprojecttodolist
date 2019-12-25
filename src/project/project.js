@@ -1,12 +1,12 @@
-const Project = function (title) {
-    let todoArray = [];
+const Project = function Project(title) {
+    const todoArray = [];
 
     const getTitle = () => title;
 
     return {
         getTitle,
-        todoArray
-    }
-}
+        todoArray,
+    };
+};
 
-export { Project };
+export { Project as default };

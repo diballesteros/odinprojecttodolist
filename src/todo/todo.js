@@ -1,4 +1,5 @@
-const Todo = function (title, description, dueDate, priority) {
+/* eslint-disable no-param-reassign */
+const Todo = function Todo(title, description, dueDate, priority) {
     const getTitle = () => title;
     const getDescription = () => description;
     const getDueDate = () => dueDate;
@@ -17,8 +18,8 @@ const Todo = function (title, description, dueDate, priority) {
         setTitle,
         setDescription,
         setDueDate,
-        setPriority
-    }
-}
+        setPriority,
+    };
+};
 
-export { Todo };
+export { Todo as default };
